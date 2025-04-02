@@ -1,0 +1,40 @@
+<script lang="ts">
+export default {
+    data() {
+        return { tituloTask: '' as String, descricao: '' as String }
+    },
+    emits: ['adicionarTask'],
+    methods: {
+        criarTask() {
+            var task = {
+                id: `${this.tituloTask}${Math.floor(Math.random() * 1110000)}`,
+                titulo: this.tituloTask,
+                descricao: this.descricao,
+                dataCriacao: new Date().toISOString(),
+                status: 'pendente'
+            }
+            this.tituloTask = ''
+            return task
+        }
+    }
+}
+</script>
+
+<template>
+
+    <div class="mx-auto mt-4 row col-8">
+        <h2>Adicionar nova tarefa</h2>
+        <div class="form-group mb-2">
+            <label class="visually-hidden" for="">Titulo Task</label>
+            <input class="form-control" v-model="tituloTask" type="text" placeholder="Digite a task para adicionar" />
+        </div>
+        <div class="form-group mb-2">
+            <label class="visually-hidden" for="">Descricao</label>
+            <input class="form-control" v-model="descricao" type="text" placeholder="Digite a descricao da tarefa" />
+        </div>
+        <div class="col-4">
+            <button class="btn mt-0 btn-success" @click="$emit('adicionarTask', criarTask())">Adicionar task</button>
+        </div>
+    </div>
+
+</template>
