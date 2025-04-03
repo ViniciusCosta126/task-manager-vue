@@ -5,7 +5,8 @@ import type { PropType } from 'vue';
 export default {
     props: {
         task: { type: Object as PropType<ITask>, required: true }
-    }
+    },
+    emits: ['deletarTask']
 }
 </script>
 
@@ -24,7 +25,7 @@ export default {
         <p class="mb-1">{{ task.descricao }}</p>
         <div class="mt-2">
             <button class="btn btn-warning me-2">Editar</button>
-            <button class="btn btn-danger">Excluir</button>
+            <button class="btn btn-danger" @click="$emit('deletarTask', task.id)">Excluir</button>
         </div>
     </div>
 </template>
