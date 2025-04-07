@@ -12,7 +12,7 @@ export default {
             }
 
             var task = {
-                id: `${this.tituloTask}${Math.floor(Math.random() * 1110000)}`,
+                id: `${this.tituloTask.replace(' ', '')}${Math.floor(Math.random() * 1110000)}`,
                 titulo: this.tituloTask,
                 descricao: this.descricao,
                 dataCriacao: new Date().toISOString(),

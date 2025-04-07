@@ -1,12 +1,14 @@
 <script lang="ts">
 import type ITask from '@/interfaces/ITask';
 import type { PropType } from 'vue';
+import ModalEdicao from './ModalEdicao.vue';
 
 export default {
     props: {
         task: { type: Object as PropType<ITask>, required: true }
     },
-    emits: ['deletarTask']
+    emits: ['deletarTask'],
+    components: { ModalEdicao }
 }
 </script>
 
@@ -24,8 +26,10 @@ export default {
         </div>
         <p class="mb-1">{{ task.descricao }}</p>
         <div class="mt-2">
-            <button class="btn btn-warning me-2">Editar</button>
+            <button data-bs-toggle="modal" :data-bs-target="`#task-modal${task.id}`"
+                class="btn btn-warning me-2">Editar</button>
             <button class="btn btn-danger" @click="$emit('deletarTask', task.id)">Excluir</button>
         </div>
     </div>
+    <ModalEdicao :task="task" />
 </template>
